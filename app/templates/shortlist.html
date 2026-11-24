@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}My shortlist — PartyPilot{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/explore.css') }}">{% endblock %}
+{% block content %}
+<section class="page-section container">
+  <h1>Your shortlist</h1><p id="shortlistCount">Your saved venues</p>
+  <div class="venue-grid" id="shortlistGrid"></div>
+  <div id="shortlistEmpty" class="empty-state" hidden><h2>No saved venues yet</h2><p>Save venues from Explore to see them here.</p><a href="/explore">Explore venues</a></div>
+</section>
+{% endblock %}
+{% block page_js %}<script src="{{ url_for('static', filename='js/shortlist.js') }}"></script>{% endblock %}

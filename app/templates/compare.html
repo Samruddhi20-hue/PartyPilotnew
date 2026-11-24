@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Compare venues — PartyPilot{% endblock %}
+{% block content %}
+<section class="page-section container">
+  <h1>Compare venues</h1><p>Compare the details available from each listing.</p>
+  <div id="comparisonContent"></div>
+</section>
+{% endblock %}
+{% block page_js %}<script src="{{ url_for('static', filename='js/compare.js') }}"></script>{% endblock %}

@@ -1,0 +1,189 @@
+
+{% extends "base.html" %}
+{% block title %}Explore venues — PartyPilot{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/explore.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{% endblock %}
+
+{% block content %}
+<section class="explore-page">
+  <div class="container">
+
+    <div class="explore-heading">
+      <div>
+        <span class="section-eyebrow">FIND YOUR TEAM'S SPOT</span>
+        <h1>Find your team's <span>happy place.</span></h1>
+        <p>Discover restaurants, cafés and spaces for your next team celebration.</p>
+      </div>
+      <div class="explore-heading-note">
+        A better plan starts<br>with the right place <span>✳</span>
+      </div>
+    </div>
+
+    <!-- Search mode selector -->
+    <div class="search-mode-switch" role="group" aria-label="Choose search type">
+      <button type="button" id="nearbyModeBtn" class="active">
+        Nearby venues
+      </button>
+      <button type="button" id="businessModeBtn">
+        Search business by name
+      </button>
+    </div>
+
+    <form id="exploreSearchForm" class="explore-search" autocomplete="off">
+
+      <!-- Nearby search -->
+      <div id="nearbySearchFields" class="search-field location-field">
+        <label for="exploreLocation">
+          <span class="field-icon">⌖</span> LOCATION
+        </label>
+        <input
+          id="exploreLocation"
+          name="location"
+          autocomplete="off"
+          placeholder="Search a city, locality or landmark..."
+          aria-label="Search location"
+        >
+        <div
+          id="exploreSuggestions"
+          class="suggestions-box"
+          role="listbox"
+          aria-label="Location suggestions">
+        </div>
+      </div>
+
+      <!-- Direct business search -->
+      <div id="businessSearchFields" class="business-search-fields" hidden>
+        <div class="search-field">
+          <label for="exploreBusiness">
+            <span class="field-icon">⌕</span> BUSINESS NAME
+          </label>
+          <input
+            id="exploreBusiness"
+            type="text"
+            placeholder="e.g. Toit, Starbucks, Social..."
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="search-field">
+          <label for="businessCity">
+            <span class="field-icon">⌖</span> CITY
+          </label>
+          <input
+            id="businessCity"
+            type="text"
+            placeholder="e.g. Pune"
+            value="Pune"
+            autocomplete="address-level2"
+          >
+        </div>
+      </div>
+
+      <div class="search-field guests-field">
+        <label for="exploreGuests">
+          <span class="field-icon">♧</span> GUESTS
+        </label>
+        <select id="exploreGuests" name="guests">
+          <option value="">Any group size</option>
+          {% for n in [20,50,100,150,200,300,500] %}
+          <option value="{{ n }}">{{ n }} people</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="button" id="useCurrentLocation" class="gps-button">
+        <span>◎</span> Use my location
+      </button>
+
+      <button type="submit" class="btn btn-primary search-submit">
+        Search venues <span>↗</span>
+      </button>
+    </form>
+
+    <div class="explore-content">
+      <div class="explore-toolbar">
+
+        <div class="category-chips" id="quickCategories" aria-label="Venue category">
+          <button type="button" data-category="all" class="category-chip active">All places</button>
+          <button type="button" data-category="restaurant" class="category-chip">Restaurants</button>
+          <button type="button" data-category="cafe" class="category-chip">Cafés</button>
+          <button type="button" data-category="pub" class="category-chip">Pubs &amp; bars</button>
+        </div>
+
+        <div class="filter-controls">
+          <label class="filter-control">
+            <span>Radius</span>
+            <select id="distanceFilter">
+              <option value="3000">3 km</option>
+              <option value="5000" selected>5 km</option>
+              <option value="10000">10 km</option>
+              <option value="15000">15 km</option>
+            </select>
+          </label>
+
+          <label class="filter-control budget-control">
+            <span>Budget / person</span>
+            <div class="budget-input-wrap">
+              <span>₹</span>
+              <input id="budgetRange" type="number" min="0" placeholder="No limit">
+            </div>
+          </label>
+
+          <label class="filter-control">
+            <span>Sort by</span>
+            <select id="sortSelect">
+              <option value="recommended">Recommended</option>
+              <option value="distance">Distance</option>
+              <option value="rating">Rating</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="results-heading">
+        <div>
+          <h2>Places around <span id="searchLocationLabel">you</span></h2>
+          <p id="resultsSubtitle" aria-live="polite">
+            Search a location or business name to discover venues.
+          </p>
+        </div>
+
+        <div class="results-side">
+          <strong id="resultsCount">0 venues</strong>
+          <div class="view-switch">
+            <button id="listViewBtn" type="button" class="active">☷ <span>List</span></button>
+            <button id="mapViewBtn" type="button">⌖ <span>Map</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="venue-grid" id="venueGrid">
+        <div class="explore-empty-start">
+          <div class="empty-illustration">⌖</div>
+          <h3>Your next favourite place is out there.</h3>
+          <p>Search for a business or enter a locality to discover venues.</p>
+        </div>
+      </div>
+
+      <div id="noResults" class="no-results-panel" hidden>
+        <div class="empty-illustration">✳</div>
+        <h3>No places found just yet</h3>
+        <p>Try another business name or city.</p>
+      </div>
+
+      <div id="mapViewContainer" class="map-view-container" hidden>
+        <div id="venueMap"></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block page_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/location.js') }}"></script>
+<script src="{{ url_for('static', filename='js/discovery.js') }}"></script>
+{% endblock %}

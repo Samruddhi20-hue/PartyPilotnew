@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Contact PartyPilot{% endblock %}
+{% block content %}
+<section class="page-section container">
+  <h1>Plan your next team event</h1>
+  <p>Tell us what you are looking for and submit an enquiry.</p>
+  <form id="contactForm" class="contact-form-card">
+    <input type="hidden" id="contactVenueId" name="venue_id">
+    <label>Name <input id="contactName" name="name" maxlength="120" required></label>
+    <label>Email <input id="contactEmail" name="email" type="email" maxlength="254" required></label>
+    <label>Phone <input id="contactPhone" name="phone" type="tel" maxlength="20" required></label>
+    <label>Event type
+      <select id="contactSubject" name="event_type" required>
+        <option value="">Choose event type</option><option>Corporate party</option><option>Team outing</option><option>Birthday</option><option>Offsite</option><option>Other</option>
+      </select>
+    </label>
+    <label>Preferred venue <input id="contactVenue" name="venue_name" maxlength="200"></label>
+    <label>Event date <input id="contactDate" name="event_date" type="date"></label>
+    <label>Number of guests <input id="contactGuests" name="guest_count" type="number" min="1" max="10000" required></label>
+    <label>Budget (₹) <input id="contactBudget" name="budget" type="number" min="0" step="1"></label>
+    <label>Message <textarea id="contactMessage" name="message" maxlength="4000" rows="5"></textarea></label>
+    <button type="submit" class="btn btn-primary">Submit enquiry</button>
+    <p id="contactFormStatus" aria-live="polite"></p>
+  </form>
+</section>
+{% endblock %}
+{% block page_js %}{% endblock %}

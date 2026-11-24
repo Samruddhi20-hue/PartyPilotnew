@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+
+{% block title %}Venue details — PartyPilot{% endblock %}
+
+{% block page_css %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/venue.css') }}"
+>
+{% endblock %}
+
+{% block content %}
+<section class="detail-page">
+    <div class="container">
+
+        <div class="detail-breadcrumb">
+            <a href="{{ url_for('main.explore') }}">
+                ← Back to explore
+            </a>
+        </div>
+
+        <div
+            id="venueDetailContent"
+            data-venue-id="{{ venue_id }}"
+            data-source="{{ source }}"
+        >
+            <div class="detail-loading">
+                <div class="detail-spinner"></div>
+                <h2>Loading venue details...</h2>
+                <p>Getting the latest available information.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+
+{% block page_js %}
+<script src="{{ url_for('static', filename='js/venue.js') }}"></script>
+{% endblock %}

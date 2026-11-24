@@ -1,0 +1,108 @@
+
+{% extends "base.html" %}
+
+{% block title %}Budget Planner — PartyPilot{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-banner budget-banner">
+    <div class="container">
+        <span class="section-eyebrow">PLAN SMARTER. PARTY BETTER. ✳</span>
+        <h1>Big party energy.<br><span>Smart budget.</span></h1>
+        <p>Know your event budget before you start calling venues.</p>
+    </div>
+</section>
+
+<section class="container page-content budget-layout">
+
+    <div class="budget-form-card">
+        <span class="section-eyebrow">LET'S DO THE MATH</span>
+        <h2>Your event details</h2>
+        <p>Adjust the numbers and see your estimated budget update.</p>
+
+        <div class="budget-input-group">
+            <label for="budgetGuests">Number of guests</label>
+            <input class="form-control" type="number" id="budgetGuests" min="1" max="10000" value="120">
+        </div>
+
+        <div class="budget-input-group">
+            <label for="budgetPerPerson">Food & venue budget per person (₹)</label>
+            <input class="form-control" type="number" id="budgetPerPerson" min="0" value="1200">
+        </div>
+
+        <div class="budget-input-group">
+            <label for="decorationCost">Decoration budget (₹)</label>
+            <input class="form-control" type="number" id="decorationCost" min="0" value="10000">
+        </div>
+
+        <div class="budget-input-group">
+            <label for="musicCost">Music / DJ budget (₹)</label>
+            <input class="form-control" type="number" id="musicCost" min="0" value="5000">
+        </div>
+
+        <div class="budget-input-group">
+            <label for="otherCost">Other expenses (₹)</label>
+            <input class="form-control" type="number" id="otherCost" min="0" value="3000">
+        </div>
+
+        <button class="btn btn-primary" id="calculateBudgetBtn" type="button">
+            Calculate my budget ↗
+        </button>
+    </div>
+
+    <div class="budget-result-card">
+        <span class="section-eyebrow">YOUR EVENT ESTIMATE</span>
+        <p class="budget-result-caption">Estimated total budget</p>
+
+        <h2 id="totalBudget">₹1,62,000</h2>
+
+        <div class="budget-result-divider"></div>
+
+        <div class="budget-result-row">
+            <span>Food & venue</span>
+            <strong id="foodTotal">₹1,44,000</strong>
+        </div>
+
+        <div class="budget-result-row">
+            <span>Decoration</span>
+            <strong id="decorationTotal">₹10,000</strong>
+        </div>
+
+        <div class="budget-result-row">
+            <span>Music / DJ</span>
+            <strong id="musicTotal">₹5,000</strong>
+        </div>
+
+        <div class="budget-result-row">
+            <span>Other expenses</span>
+            <strong id="otherTotal">₹3,000</strong>
+        </div>
+
+        <div class="budget-result-divider"></div>
+
+        <div class="budget-result-row budget-per-head">
+            <span>Estimated cost per guest</span>
+            <strong id="perGuestTotal">₹1,350</strong>
+        </div>
+
+        <div class="budget-tip">
+            <span>✳</span>
+            <p>Keep a little extra budget for taxes, service charges and unexpected expenses.</p>
+        </div>
+
+        <button class="btn btn-dark" id="downloadBudgetBtn" type="button">
+            Download estimate ↓
+        </button>
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block page_js %}
+<script src="{{ url_for('static', filename='js/budget.js') }}"></script>
+{% endblock %}

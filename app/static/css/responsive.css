@@ -1,0 +1,37 @@
+
+/* GLOBAL RESPONSIVE POLISH */
+
+@media (max-width: 760px) {
+    html {
+        scroll-padding-top: 80px;
+    }
+
+    .btn {
+        min-height: 46px;
+    }
+
+    input, select, textarea {
+        max-width: 100%;
+    }
+
+    .toast-container {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .toast {
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

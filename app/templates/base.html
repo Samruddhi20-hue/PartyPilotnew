@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#faf9f6">
+
+    <title>{% block title %}PartyPilot — Find Your Party Spot{% endblock %}</title>
+
+    <meta name="description" content="Discover amazing restaurants, rooftop venues and event spaces for your next corporate celebration.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+     
+    {% block page_css %}{% endblock %}
+</head>
+
+<body>
+
+    <div class="announcement-bar">
+        <span class="announcement-sparkle">✳</span>
+        Your next team celebration starts here.
+        <span class="announcement-sparkle">✳</span>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar container">
+
+            <a href="/" class="brand-logo">
+                party<span>pilot</span><span class="brand-dot">.</span>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/explore" class="nav-link">Explore venues</a>
+                <a href="/budget-planner" class="nav-link">Budget planner</a>
+                <a href="/contact" class="nav-link">Contact</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="/shortlist" class="nav-favourites">
+                    <span>♡</span> Shortlist
+                </a>
+                <a href="/explore" class="btn btn-primary nav-cta">
+                    Find a venue <span>↗</span>
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn"
+                    aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-main">
+
+            <div class="footer-brand">
+                <a href="/" class="brand-logo footer-logo">
+                    party<span>pilot</span><span class="brand-dot">.</span>
+                </a>
+                <p>
+                    Less planning chaos. More legendary team nights.
+                    Find the perfect spot for your next celebration.
+                </p>
+                <span class="footer-tagline">Made for the moments that matter. ✳</span>
+            </div>
+
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="/explore">All venues</a>
+                <a href="/explore?category=restaurants">Restaurants</a>
+                <a href="/explore?category=rooftops">Rooftops</a>
+                <a href="/explore?category=banquets">Banquet halls</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Plan your event</h4>
+                <a href="/budget-planner">Budget planner</a>
+                <a href="/shortlist">My shortlist</a>
+                <a href="/explore">Compare venues</a>
+                <a href="/contact">Get in touch</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>PartyPilot</h4>
+                <a href="/">About us</a>
+                <a href="/contact">Contact</a>
+                <a href="/contact">Help centre</a>
+            </div>
+
+        </div>
+
+        <div class="container footer-bottom">
+            <p>© 2026 PartyPilot. Made for better celebrations.</p>
+            <p>Find the vibe. Pick the spot. ✳</p>
+        </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    {% block page_js %}{% endblock %}
+
+</body>
+</html>

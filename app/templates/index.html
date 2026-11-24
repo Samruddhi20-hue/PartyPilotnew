@@ -1,0 +1,339 @@
+
+{% extends "base.html" %}
+
+{% block title %}PartyPilot — Your Team's Next Big Night{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="hero-background-shape shape-one"></div>
+    <div class="hero-background-shape shape-two"></div>
+
+    <div class="container hero-container">
+
+        <div class="hero-content">
+            <div class="hero-pill">
+                <span class="live-dot"></span>
+                THE NEW WAY TO PLAN TEAM PARTIES
+                <span>✳</span>
+            </div>
+
+            <h1>
+                Your team's<br>
+                next big <span class="highlight-text">night.</span>
+            </h1>
+
+            <p class="hero-description">
+                From rooftop scenes to unforgettable team dinners.
+                Find the perfect place for your people, without
+                the planning chaos.
+            </p>
+
+            <div class="hero-social-proof">
+                <div class="avatar-stack">
+                    <span>H</span>
+                    <span>F</span>
+                    <span>A</span>
+                    <span>+</span>
+                </div>
+                <p>Made for teams that know how to celebrate.</p>
+            </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+            <img
+                src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1100&q=85"
+                alt="Beautifully arranged celebration dinner"
+                class="hero-image"
+            >
+
+            <div class="floating-card floating-card-top">
+                <span class="floating-icon">✦</span>
+                <div>
+                    <strong>Good vibes only</strong>
+                    <small>Your next event awaits</small>
+                </div>
+            </div>
+
+            <div class="floating-card floating-card-bottom">
+                <span class="floating-emoji">🥂</span>
+                <div>
+                    <strong>Team night unlocked</strong>
+                    <small>Let's make it memorable</small>
+                </div>
+            </div>
+
+            <div class="hero-image-sticker">LET'S<br>PARTY!</div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SEARCH SECTION -->
+<section class="search-section">
+    <div class="container">
+
+        <div class="search-heading">
+            <div>
+                <span class="section-eyebrow">THE SEARCH STARTS HERE</span>
+                <h2>Where are we <span>celebrating?</span></h2>
+            </div>
+            <p>Just a few details. We'll find your spot.</p>
+        </div>
+
+        <form class="search-panel" id="searchForm" action="/explore" method="GET">
+
+            <div class="search-field location-field">
+                <label for="locationInput">
+                    <i data-lucide="map-pin"></i> LOCATION
+                </label>
+                <input
+                    type="text"
+                    id="locationInput"
+                    name="location"
+                    placeholder="Search city or locality..."
+                    autocomplete="off"
+                    required
+                >
+                <div id="locationSuggestions" class="suggestions-box"></div>
+            </div>
+
+            <div class="search-field">
+                <label for="guestCount">
+                    <i data-lucide="users"></i> GUESTS
+                </label>
+                <select id="guestCount" name="guests" required>
+                    <option value="">How many people?</option>
+                    <option value="20">Up to 20</option>
+                    <option value="50">20–50 people</option>
+                    <option value="100">50–100 people</option>
+                    <option value="150">100–150 people</option>
+                    <option value="200">150–200 people</option>
+                    <option value="300">200–300 people</option>
+                    <option value="500">300–500 people</option>
+                    <option value="500+">500+ people</option>
+                </select>
+            </div>
+
+            <div class="search-field">
+                <label for="eventType">
+                    <i data-lucide="party-popper"></i> EVENT TYPE
+                </label>
+                <select id="eventType" name="event_type">
+                    <option value="">What's the occasion?</option>
+                    <option value="team-outing">Team outing</option>
+                    <option value="corporate-party">Corporate party</option>
+                    <option value="team-dinner">Team dinner</option>
+                    <option value="annual-party">Annual celebration</option>
+                    <option value="farewell">Farewell party</option>
+                    <option value="birthday">Office birthday</option>
+                    <option value="networking">Networking event</option>
+                </select>
+            </div>
+
+            <div class="search-field">
+                <label for="eventDate">
+                    <i data-lucide="calendar-days"></i> DATE
+                </label>
+                <input type="date" id="eventDate" name="date">
+            </div>
+
+            <button type="submit" class="btn btn-primary search-submit">
+                Find venues <span>↗</span>
+            </button>
+
+        </form>
+
+        <div class="search-note">
+            <span>✳</span>
+            No complicated planning. Just find your perfect place.
+        </div>
+
+    </div>
+</section>
+
+
+<!-- EVENT CATEGORIES -->
+<section class="categories-section section-padding">
+    <div class="container">
+
+        <div class="section-heading-row">
+            <div>
+                <span class="section-eyebrow">PICK YOUR VIBE</span>
+                <h2>Every team has <span>its thing.</span></h2>
+                <p>Whatever the occasion, we've got a spot for it.</p>
+            </div>
+            <a href="/explore" class="text-link">Explore all venues ↗</a>
+        </div>
+
+        <div class="category-grid">
+
+            <a href="/explore?category=restaurants" class="category-card category-large">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80" alt="Restaurant dining">
+                <div class="category-overlay"></div>
+                <div class="category-content">
+                    <span class="category-number">01 / THE CLASSIC</span>
+                    <h3>Team<br>dinners</h3>
+                    <span class="category-arrow">↗</span>
+                </div>
+            </a>
+
+            <a href="/explore?category=rooftops" class="category-card">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80" alt="Stylish restaurant">
+                <div class="category-overlay"></div>
+                <div class="category-content">
+                    <span class="category-number">02 / THE VIBE</span>
+                    <h3>Rooftop<br>scenes</h3>
+                    <span class="category-arrow">↗</span>
+                </div>
+            </a>
+
+            <a href="/explore?category=pubs" class="category-card">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80" alt="Social venue">
+                <div class="category-overlay"></div>
+                <div class="category-content">
+                    <span class="category-number">03 / THE ENERGY</span>
+                    <h3>Party<br>places</h3>
+                    <span class="category-arrow">↗</span>
+                </div>
+            </a>
+
+            <a href="/explore?category=banquets" class="category-card">
+                <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=800&q=80" alt="Event hall">
+                <div class="category-overlay"></div>
+                <div class="category-content">
+                    <span class="category-number">04 / THE BIG ONE</span>
+                    <h3>Banquet<br>spaces</h3>
+                    <span class="category-arrow">↗</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- POPULAR LOCATIONS -->
+<section class="locations-section section-padding">
+    <div class="container">
+
+        <div class="section-heading-row">
+            <div>
+                <span class="section-eyebrow">THE CITY IS YOURS</span>
+                <h2>Explore the <span>hotspots.</span></h2>
+                <p>Discover places around the areas where your team works and plays.</p>
+            </div>
+        </div>
+
+        <div class="location-grid">
+
+            <a href="/explore?location=Viman%20Nagar%2C%20Pune" class="location-card">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Restaurant in Viman Nagar">
+                <div class="location-card-content">
+                    <h3>Viman Nagar</h3>
+                    <p>Pune, Maharashtra <span>↗</span></p>
+                </div>
+            </a>
+
+            <a href="/explore?location=Koregaon%20Park%2C%20Pune" class="location-card">
+                <img src="https://images.unsplash.com/photo-1515003197210-e0cd7184f8b5?auto=format&fit=crop&w=800&q=80" alt="Restaurant ambience">
+                <div class="location-card-content">
+                    <h3>Koregaon Park</h3>
+                    <p>Pune, Maharashtra <span>↗</span></p>
+                </div>
+            </a>
+
+            <a href="/explore?location=Kalyani%20Nagar%2C%20Pune" class="location-card">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80" alt="Modern dining venue">
+                <div class="location-card-content">
+                    <h3>Kalyani Nagar</h3>
+                    <p>Pune, Maharashtra <span>↗</span></p>
+                </div>
+            </a>
+
+            <a href="/explore?location=Baner%2C%20Pune" class="location-card">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt="Restaurant interior">
+                <div class="location-card-content">
+                    <h3>Baner</h3>
+                    <p>Pune, Maharashtra <span>↗</span></p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- WHY PARTYPILOT -->
+<section class="why-section section-padding">
+    <div class="container why-container">
+
+        <div class="why-content">
+            <span class="section-eyebrow">WHY PARTYPILOT?</span>
+            <h2>Less spreadsheets.<br><span>More celebrations.</span></h2>
+            <p>
+                Planning a team party shouldn't feel like another work project.
+                We make finding your next event venue simple, quick and actually fun.
+            </p>
+
+            <a href="/explore" class="btn btn-dark">
+                Let's find your spot <span>↗</span>
+            </a>
+        </div>
+
+        <div class="why-features">
+            <div class="why-feature">
+                <span class="feature-icon purple-icon"><i data-lucide="map-pinned"></i></span>
+                <div>
+                    <h3>Location-first discovery</h3>
+                    <p>Find great places around your office or preferred area.</p>
+                </div>
+            </div>
+
+            <div class="why-feature">
+                <span class="feature-icon lime-icon"><i data-lucide="users"></i></span>
+                <div>
+                    <h3>Built for your whole team</h3>
+                    <p>Discover venues based on your actual group size.</p>
+                </div>
+            </div>
+
+            <div class="why-feature">
+                <span class="feature-icon lavender-icon"><i data-lucide="wallet"></i></span>
+                <div>
+                    <h3>Budget-friendly planning</h3>
+                    <p>Estimate your event costs before contacting venues.</p>
+                </div>
+            </div>
+
+            <div class="why-feature">
+                <span class="feature-icon purple-icon"><i data-lucide="heart"></i></span>
+                <div>
+                    <h3>Save your favourites</h3>
+                    <p>Shortlist your top choices and compare them easily.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="final-cta-section">
+    <div class="container final-cta">
+        <span class="section-eyebrow">YOUR NEXT EVENT STARTS HERE</span>
+        <h2>Good teams deserve<br><span>great nights.</span></h2>
+        <p>Go on. Find somewhere worth celebrating.</p>
+        <a href="/explore" class="btn btn-dark">Find your venue <span>↗</span></a>
+        <div class="cta-decoration">✳</div>
+    </div>
+</section>
+
+{% endblock %}
